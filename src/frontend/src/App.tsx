@@ -4,13 +4,13 @@ import {
   ExternalLink,
   Github,
   Linkedin,
-  Mail,
   Menu,
   MessageSquare,
+  Phone,
   User,
   X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -19,47 +19,260 @@ const NAV_LINKS = [
   { label: "Contact", href: "#contact" },
 ];
 
-const SKILLS = [
-  "HTML5",
-  "CSS3",
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Tailwind CSS",
-  "Node.js",
-  "Git & GitHub",
-  "REST APIs",
-  "Responsive Design",
-  "Figma",
-  "VS Code",
+const SKILLS = ["Java", "Python", "C", "MySQL", "Data Analytics"];
+
+const LINKEDIN_URL = "https://www.linkedin.com/in/karthik-raparthi-a3b155331";
+const GITHUB_URL = "https://github.com/KarthikGoud-4";
+
+const STATS = [
+  {
+    value: 2450,
+    label: "Project Completed Done",
+    icon: (
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-12 h-12"
+      >
+        <rect
+          x="10"
+          y="4"
+          width="36"
+          height="48"
+          rx="4"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        />
+        <path
+          d="M18 18h20M18 26h20M18 34h12"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <circle
+          cx="48"
+          cy="46"
+          r="10"
+          fill="#0f172a"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        />
+        <path
+          d="M43 46l3.5 3.5L53 42"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    value: 1085,
+    label: "Satisfied Clients",
+    icon: (
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-12 h-12"
+      >
+        <circle cx="32" cy="14" r="8" stroke="currentColor" strokeWidth="2.5" />
+        <path
+          d="M14 50c0-9.941 8.059-18 18-18s18 8.059 18 18"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M24 26c-6 1-10 5-10 10"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M40 26c6 1 10 5 10 10"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M28 38c2-1.5 6-1.5 8 0"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    value: 7,
+    label: "My Team Members",
+    icon: (
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-12 h-12"
+      >
+        <circle
+          cx="32"
+          cy="22"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        />
+        <path
+          d="M12 52c0-11.046 8.954-20 20-20s20 8.954 20 20"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M38 14a10 10 0 010 16"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M50 52c0-8-5-14-12-17"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    value: 2790,
+    label: "World Wide Customer",
+    icon: (
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-12 h-12"
+      >
+        <circle
+          cx="32"
+          cy="32"
+          r="22"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        />
+        <ellipse
+          cx="32"
+          cy="32"
+          rx="10"
+          ry="22"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path d="M10 32h44" stroke="currentColor" strokeWidth="2" />
+        <path
+          d="M12 20h40M12 44h40"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeDasharray="3 3"
+        />
+      </svg>
+    ),
+  },
 ];
 
 const PROJECTS = [
   {
-    title: "SkyWatch Dashboard",
+    title: "Weather Chatbot",
     description:
-      "A real-time weather dashboard with animated charts, 7-day forecasts, and location-based data using the OpenWeather API. Features dark/light mode and responsive layout.",
-    tags: ["React", "TypeScript", "Chart.js", "REST API"],
-    image: "/assets/generated/project-weather.dim_600x400.png",
-    link: "#",
-  },
-  {
-    title: "TaskFlow Kanban",
-    description:
-      "A full-featured kanban board app with drag-and-drop task management, priority labels, due dates, and team collaboration features. Persists state with localStorage.",
-    tags: ["React", "DnD Kit", "Tailwind", "Zustand"],
-    image: "/assets/generated/project-taskboard.dim_600x400.png",
-    link: "#",
-  },
-  {
-    title: "ShopSphere",
-    description:
-      "A modern e-commerce storefront with product filtering, cart management, checkout flow, and animated product previews. Designed with accessibility in mind.",
-    tags: ["React", "CSS Grid", "Context API", "Framer Motion"],
-    image: "/assets/generated/project-shop.dim_600x400.png",
-    link: "#",
+      "An AI-powered weather assistant chatbot that provides real-time weather updates, forecasts, and conversational weather insights through a clean, interactive interface.",
+    image: "/assets/generated/weather-chatbot-project.dim_800x500.jpg",
+    tags: ["AI", "Weather API", "Chatbot", "JavaScript"],
+    link: "https://weather-chatbot-56.netlify.app/",
   },
 ];
+
+function useCountUp(target: number, duration = 1800, start = false) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let startTime: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      setCount(Math.floor(progress * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [target, duration, start]);
+  return count;
+}
+
+function StatCard({
+  value,
+  label,
+  icon,
+  animate,
+}: { value: number; label: string; icon: React.ReactNode; animate: boolean }) {
+  const count = useCountUp(value, 1800, animate);
+  const display =
+    value < 10 ? String(count).padStart(2, "0") : count.toLocaleString();
+  return (
+    <div className="flex flex-col items-start gap-4 p-8 border-r last:border-r-0 border-[#1F2937]">
+      <div style={{ color: "#94A3B8" }}>{icon}</div>
+      <div>
+        <div
+          className="text-5xl font-bold text-white mb-1"
+          style={{ fontVariantNumeric: "tabular-nums" }}
+        >
+          {display}
+        </div>
+        <div className="text-sm" style={{ color: "#64748B" }}>
+          {label}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Stats() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimate(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 },
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={ref}
+      className="border-y border-[#1F2937]"
+      style={{ background: "#0f172a" }}
+    >
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          {STATS.map((stat) => (
+            <StatCard key={stat.label} {...stat} animate={animate} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -91,17 +304,15 @@ function Header() {
       } border-b border-[#1F2937]`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
         <a
           href="#home"
           data-ocid="header.link"
           className="text-lg font-extrabold tracking-widest transition-colors duration-200"
           style={{ color: active === "#home" ? "#38BDF8" : "#ffffff" }}
         >
-          ALEX RAMOS
+          KARTHIK
         </a>
 
-        {/* Desktop Nav */}
         <nav
           className="hidden md:flex items-center gap-8"
           aria-label="Main navigation"
@@ -128,7 +339,6 @@ function Header() {
           ))}
         </nav>
 
-        {/* Mobile menu toggle */}
         <button
           type="button"
           className="md:hidden p-2 rounded-lg text-[#94A3B8] hover:text-white hover:bg-white/10 transition-colors"
@@ -140,7 +350,6 @@ function Header() {
         </button>
       </div>
 
-      {/* Mobile Nav */}
       {mobileOpen && (
         <nav
           className="md:hidden border-t border-[#1F2937] bg-[#111827]/98 backdrop-blur-md px-4 py-4 flex flex-col gap-3"
@@ -174,7 +383,6 @@ function Hero() {
           "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0c1445 100%)",
       }}
     >
-      {/* Background decorative blobs */}
       <div
         className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none"
         style={{
@@ -190,7 +398,6 @@ function Hero() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full pt-20 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Text */}
           <div>
             <p
               className="animate-fade-in-up text-sm font-semibold tracking-widest uppercase mb-4"
@@ -199,7 +406,7 @@ function Hero() {
               👋 Hello, I'm
             </p>
             <h1 className="animate-fade-in-up-delay text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-white mb-4">
-              Alex
+              Raparthi
               <br />
               <span
                 style={{
@@ -210,22 +417,22 @@ function Hero() {
                   backgroundClip: "text",
                 }}
               >
-                Ramos
+                Karthik
               </span>
             </h1>
             <p
               className="animate-fade-in-up-delay2 text-xl sm:text-2xl font-semibold mb-6"
               style={{ color: "#94A3B8" }}
             >
-              Aspiring Web Developer
+              Java & Python Developer | Data Analytics
             </p>
             <p
               className="animate-fade-in-up-delay2 text-base mb-10 max-w-md leading-relaxed"
               style={{ color: "#94A3B8" }}
             >
-              I craft clean, responsive, and delightful web experiences.
-              Passionate about turning ideas into pixel-perfect reality with
-              modern tools.
+              Passionate about building efficient software solutions and
+              uncovering insights through data. Skilled in Java, Python, C,
+              MySQL, and Data Analytics.
             </p>
             <div className="animate-fade-in-up-delay3 flex flex-wrap gap-4">
               <a
@@ -263,7 +470,6 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right: Decorative image with floating shapes */}
           <div className="hidden lg:flex items-center justify-center relative">
             <div
               className="relative w-full max-w-md h-96 rounded-3xl overflow-hidden"
@@ -279,7 +485,6 @@ function Hero() {
                 aria-hidden="true"
                 className="w-full h-full object-cover opacity-80"
               />
-              {/* Floating shape overlays */}
               <div
                 className="animate-float absolute top-6 right-8 w-12 h-12 rounded-lg"
                 style={{
@@ -308,7 +513,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
         <span className="text-xs text-[#94A3B8] tracking-widest uppercase">
           Scroll
@@ -328,9 +532,7 @@ function About() {
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* Left: Avatar + bio */}
           <div>
-            {/* Avatar */}
             <div className="flex items-center gap-6 mb-8">
               <div className="relative flex-shrink-0">
                 <div
@@ -341,7 +543,7 @@ function About() {
                       "0 0 30px rgba(14,165,233,0.4), 0 0 60px rgba(99,102,241,0.2)",
                   }}
                 >
-                  AR
+                  RK
                 </div>
                 <div
                   className="absolute inset-0 rounded-full animate-pulse"
@@ -366,22 +568,21 @@ function About() {
               className="text-base leading-relaxed mb-4"
               style={{ color: "#94A3B8" }}
             >
-              Hi! I'm Alex Ramos, an aspiring web developer based in San
-              Francisco. I'm passionate about building clean, accessible, and
-              performant web applications that solve real-world problems.
+              Hi! I'm Raparthi Karthik, a developer passionate about creating
+              efficient and impactful software. I specialize in Java, Python,
+              and C programming, backed by strong skills in MySQL database
+              management and Data Analytics.
             </p>
             <p
               className="text-base leading-relaxed"
               style={{ color: "#94A3B8" }}
             >
-              Currently pursuing a Computer Science degree while freelancing on
-              side projects. I love diving into new technologies and
-              collaborating with creative teams to ship products that people
-              actually enjoy using.
+              I love turning complex data into actionable insights and building
+              robust backend systems. Always eager to learn new technologies and
+              take on challenging projects.
             </p>
           </div>
 
-          {/* Right: Skills */}
           <div>
             <div className="flex items-center gap-2 mb-6">
               <Code2 size={16} style={{ color: "#6366f1" }} />
@@ -439,8 +640,7 @@ function Projects() {
           "linear-gradient(180deg, #0f172a 0%, #0c1a3d 50%, #0f172a 100%)",
       }}
     >
-      <div className="max-w-6xl mx-auto">
-        {/* Section header */}
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-3">
             <Briefcase size={16} style={{ color: "#0ea5e9" }} />
@@ -451,47 +651,29 @@ function Projects() {
               Portfolio
             </span>
           </div>
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Featured Projects
-          </h2>
+          <h2 className="text-4xl font-bold text-white mb-4">My Projects</h2>
           <div
             className="w-16 h-1 rounded-full mx-auto"
             style={{ background: "linear-gradient(90deg, #0ea5e9, #6366f1)" }}
           />
         </div>
 
-        {/* Cards grid */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          data-ocid="projects.list"
-        >
-          {PROJECTS.map((project, i) => (
-            <article
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {PROJECTS.map((project) => (
+            <div
               key={project.title}
-              data-ocid={`projects.item.${i + 1}`}
-              className="group rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1"
+              className="group rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
               style={{
                 background: "#111827",
-                border: "1px solid rgba(99,102,241,0.2)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.border =
-                  "1px solid rgba(14,165,233,0.5)";
-                (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 0 30px rgba(14,165,233,0.2), 0 8px 32px rgba(0,0,0,0.3)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.border =
-                  "1px solid rgba(99,102,241,0.2)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                border: "1px solid rgba(99,102,241,0.25)",
+                boxShadow: "0 0 30px rgba(99,102,241,0.06)",
               }}
             >
-              {/* Image */}
-              <div className="relative h-44 overflow-hidden">
+              <div className="relative h-52 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div
                   className="absolute inset-0"
@@ -502,28 +684,26 @@ function Projects() {
                 />
               </div>
 
-              {/* Content */}
-              <div className="flex flex-col flex-1 p-6">
-                <h3 className="text-lg font-bold text-white mb-2">
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-white mb-2">
                   {project.title}
                 </h3>
                 <p
-                  className="text-sm leading-relaxed mb-4 flex-1"
+                  className="text-sm leading-relaxed mb-4"
                   style={{ color: "#94A3B8" }}
                 >
                   {project.description}
                 </p>
 
-                {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-5">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 text-xs font-medium rounded-md"
+                      className="px-3 py-1 rounded-full text-xs font-medium"
                       style={{
                         background: "rgba(99,102,241,0.15)",
-                        color: "#818cf8",
-                        border: "1px solid rgba(99,102,241,0.2)",
+                        border: "1px solid rgba(99,102,241,0.3)",
+                        color: "#a5b4fc",
                       }}
                     >
                       {tag}
@@ -531,11 +711,12 @@ function Projects() {
                   ))}
                 </div>
 
-                {/* CTA */}
                 <a
                   href={project.link}
-                  data-ocid={`projects.view_button.${i + 1}`}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-300 hover:scale-105"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-ocid={`projects.${project.title.toLowerCase().replace(/\s+/g, "_")}.button`}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white transition-all duration-300 hover:scale-105"
                   style={{
                     background: "linear-gradient(135deg, #0ea5e9, #6366f1)",
                   }}
@@ -544,8 +725,51 @@ function Projects() {
                   View Project
                 </a>
               </div>
-            </article>
+            </div>
           ))}
+
+          <div
+            className="rounded-2xl p-8 flex flex-col items-center justify-center text-center"
+            style={{
+              background: "#111827",
+              border: "1px dashed rgba(99,102,241,0.3)",
+            }}
+          >
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(14,165,233,0.15), rgba(99,102,241,0.15))",
+                border: "1px solid rgba(99,102,241,0.3)",
+              }}
+            >
+              <Github size={28} style={{ color: "#38BDF8" }} />
+            </div>
+            <h3 className="text-lg font-bold text-white mb-2">
+              More Coming Soon
+            </h3>
+            <p
+              className="text-sm leading-relaxed mb-6"
+              style={{ color: "#94A3B8" }}
+            >
+              Follow my GitHub to stay updated on new projects.
+            </p>
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-ocid="projects.github_button"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm border transition-all duration-300 hover:scale-105"
+              style={{
+                borderColor: "rgba(56,189,248,0.4)",
+                color: "#38BDF8",
+                background: "transparent",
+              }}
+            >
+              <Github size={14} />
+              View GitHub
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -577,15 +801,14 @@ function Contact() {
           className="text-base leading-relaxed mb-12"
           style={{ color: "#94A3B8" }}
         >
-          I'm currently open to new opportunities, freelance projects, and
-          exciting collaborations. Whether you have a question or just want to
-          say hi, my inbox is always open!
+          I'm open to new opportunities, projects, and exciting collaborations.
+          Feel free to reach out via phone or connect with me on social media!
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
           <a
-            href="mailto:alex.ramos@example.com"
-            data-ocid="contact.email_button"
+            href="tel:7816061094"
+            data-ocid="contact.phone_button"
             className="group inline-flex items-center gap-3 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105"
             style={{
               background: "#111827",
@@ -608,12 +831,12 @@ function Contact() {
                 "#111827";
             }}
           >
-            <Mail size={18} style={{ color: "#0ea5e9" }} />
-            Send an Email
+            <Phone size={18} style={{ color: "#0ea5e9" }} />
+            7816061094
           </a>
 
           <a
-            href="https://linkedin.com/in/alexramos"
+            href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
             data-ocid="contact.linkedin_button"
@@ -639,22 +862,12 @@ function Contact() {
                 "#111827";
             }}
           >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-              style={{ color: "#6366f1" }}
-            >
-              <title>LinkedIn</title>
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
+            <Linkedin size={18} style={{ color: "#6366f1" }} />
             LinkedIn
           </a>
 
           <a
-            href="https://github.com/alexramos"
+            href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
             data-ocid="contact.github_button"
@@ -702,7 +915,7 @@ function Footer() {
     >
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-sm" style={{ color: "#94A3B8" }}>
-          © {year} Alex Ramos. Built with ❤️ using{" "}
+          © {year} Raparthi Karthik. Built with ❤️ using{" "}
           <a
             href={caffeineUrl}
             target="_blank"
@@ -716,8 +929,8 @@ function Footer() {
 
         <div className="flex items-center gap-4">
           <a
-            href="mailto:alex.ramos@example.com"
-            aria-label="Email"
+            href="tel:7816061094"
+            aria-label="Phone"
             className="transition-all duration-200 hover:scale-110"
             style={{ color: "#94A3B8" }}
             onMouseEnter={(e) => {
@@ -727,10 +940,10 @@ function Footer() {
               (e.currentTarget as HTMLAnchorElement).style.color = "#94A3B8";
             }}
           >
-            <Mail size={18} />
+            <Phone size={18} />
           </a>
           <a
-            href="https://linkedin.com/in/alexramos"
+            href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -746,7 +959,7 @@ function Footer() {
             <Linkedin size={18} />
           </a>
           <a
-            href="https://github.com/alexramos"
+            href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -774,6 +987,7 @@ export default function App() {
       <main>
         <Hero />
         <About />
+        <Stats />
         <Projects />
         <Contact />
       </main>
