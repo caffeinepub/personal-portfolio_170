@@ -194,6 +194,14 @@ const PROJECTS = [
     tags: ["AI", "Weather API", "Chatbot", "JavaScript"],
     link: "https://weather-chatbot-56.netlify.app/",
   },
+  {
+    title: "Fade Loop Demo",
+    description:
+      "A modern UI/UX design portfolio demo featuring smooth fade and loop animations, sleek dark interface design, and glowing neon accents showcasing advanced web animation techniques.",
+    image: "/assets/generated/fade-loop-project.dim_800x500.jpg",
+    tags: ["UI/UX", "Animation", "Design", "React"],
+    link: "https://fade-loop-demo.preview.emergentagent.com/about",
+  },
 ];
 
 function useCountUp(target: number, duration = 1800, start = false) {
@@ -403,7 +411,7 @@ function Hero() {
               className="animate-fade-in-up text-sm font-semibold tracking-widest uppercase mb-4"
               style={{ color: "#0ea5e9" }}
             >
-              👋 Hello, I'm
+              👋 Hello, I&apos;m
             </p>
             <h1 className="animate-fade-in-up-delay text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-white mb-4">
               Raparthi
@@ -424,7 +432,7 @@ function Hero() {
               className="animate-fade-in-up-delay2 text-xl sm:text-2xl font-semibold mb-6"
               style={{ color: "#94A3B8" }}
             >
-              Java & Python Developer | Data Analytics
+              Web Developer | Java &amp; Python Developer
             </p>
             <p
               className="animate-fade-in-up-delay2 text-base mb-10 max-w-md leading-relaxed"
@@ -470,43 +478,19 @@ function Hero() {
             </div>
           </div>
 
+          {/* Hero image - uploaded portfolio reference */}
           <div className="hidden lg:flex items-center justify-center relative">
             <div
-              className="relative w-full max-w-md h-96 rounded-3xl overflow-hidden"
+              className="relative w-full max-w-lg rounded-3xl overflow-hidden"
               style={{
-                background: "linear-gradient(135deg, #1e1b4b 0%, #0c1a3d 100%)",
+                boxShadow: "0 0 60px rgba(99,102,241,0.3)",
                 border: "1px solid rgba(99,102,241,0.3)",
-                boxShadow: "0 0 60px rgba(99,102,241,0.2)",
               }}
             >
               <img
-                src="/assets/generated/hero-shapes.dim_600x500.png"
-                alt=""
-                aria-hidden="true"
-                className="w-full h-full object-cover opacity-80"
-              />
-              <div
-                className="animate-float absolute top-6 right-8 w-12 h-12 rounded-lg"
-                style={{
-                  background: "rgba(14,165,233,0.2)",
-                  border: "1px solid rgba(14,165,233,0.5)",
-                  backdropFilter: "blur(4px)",
-                }}
-              />
-              <div
-                className="animate-float-delay absolute bottom-10 left-6 w-8 h-8 rounded-full"
-                style={{
-                  background: "rgba(99,102,241,0.3)",
-                  border: "1px solid rgba(99,102,241,0.6)",
-                }}
-              />
-              <div
-                className="animate-float-delay2 absolute top-1/2 left-1/3 w-10 h-10"
-                style={{
-                  background: "rgba(56,189,248,0.15)",
-                  border: "1px solid rgba(56,189,248,0.4)",
-                  transform: "rotate(45deg)",
-                }}
+                src="/assets/uploads/image-019d2f95-94be-73ed-8114-f9647008e310-1.png"
+                alt="Professional Portfolio - Raparthi Karthik"
+                className="w-full h-auto object-cover"
               />
             </div>
           </div>
@@ -568,10 +552,10 @@ function About() {
               className="text-base leading-relaxed mb-4"
               style={{ color: "#94A3B8" }}
             >
-              Hi! I'm Raparthi Karthik, a developer passionate about creating
-              efficient and impactful software. I specialize in Java, Python,
-              and C programming, backed by strong skills in MySQL database
-              management and Data Analytics.
+              Hi! I&apos;m Raparthi Karthik, a developer passionate about
+              creating efficient and impactful software. I specialize in Java,
+              Python, and C programming, backed by strong skills in MySQL
+              database management and Data Analytics.
             </p>
             <p
               className="text-base leading-relaxed"
@@ -727,176 +711,339 @@ function Projects() {
               </div>
             </div>
           ))}
-
-          <div
-            className="rounded-2xl p-8 flex flex-col items-center justify-center text-center"
-            style={{
-              background: "#111827",
-              border: "1px dashed rgba(99,102,241,0.3)",
-            }}
-          >
-            <div
-              className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(14,165,233,0.15), rgba(99,102,241,0.15))",
-                border: "1px solid rgba(99,102,241,0.3)",
-              }}
-            >
-              <Github size={28} style={{ color: "#38BDF8" }} />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">
-              More Coming Soon
-            </h3>
-            <p
-              className="text-sm leading-relaxed mb-6"
-              style={{ color: "#94A3B8" }}
-            >
-              Follow my GitHub to stay updated on new projects.
-            </p>
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-ocid="projects.github_button"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm border transition-all duration-300 hover:scale-105"
-              style={{
-                borderColor: "rgba(56,189,248,0.4)",
-                color: "#38BDF8",
-                background: "transparent",
-              }}
-            >
-              <Github size={14} />
-              View GitHub
-            </a>
-          </div>
         </div>
       </div>
     </section>
   );
 }
 
+const INPUT_STYLE: React.CSSProperties = {
+  width: "100%",
+  padding: "10px 14px",
+  borderRadius: 8,
+  border: "1px solid #ccc",
+  background: "#f9f9f9",
+  color: "#111",
+  fontSize: 14,
+  outline: "none",
+  boxSizing: "border-box",
+};
+
 function Contact() {
+  const [selected, setSelected] = useState<string[]>([]);
+  const [submitted, setSubmitted] = useState(false);
+  const tags = [
+    "Mobile App",
+    "Website Design",
+    "Branding",
+    "Webflow Development",
+    "App Design",
+    "Web Development",
+    "WordPress",
+  ];
+
+  const toggleTag = (tag: string) => {
+    setSelected((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+    );
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = data.get("name") as string;
+    const email = data.get("email") as string;
+    const company = data.get("company") as string;
+    const message = data.get("message") as string;
+    const services = selected.join(", ");
+
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nCompany: ${company || "N/A"}\nServices: ${services || "N/A"}\n\nMessage:\n${message}\n\nSent from portfolio contact form`,
+    );
+    window.location.href = `mailto:karthikgoudraparthi@gmail.com?subject=${subject}&body=${body}`;
+    setSubmitted(true);
+  };
+
   return (
-    <section
-      id="contact"
-      className="py-24 px-4 sm:px-6"
-      style={{ background: "#0f172a" }}
-    >
-      <div className="max-w-2xl mx-auto text-center">
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <MessageSquare size={16} style={{ color: "#0ea5e9" }} />
-          <span
-            className="text-sm font-semibold uppercase tracking-wider"
-            style={{ color: "#0ea5e9" }}
-          >
-            Contact
-          </span>
-        </div>
-        <h2 className="text-4xl font-bold text-white mb-2">Get In Touch</h2>
-        <p className="text-2xl font-semibold mb-6" style={{ color: "#6366f1" }}>
-          Let's Collaborate!
-        </p>
-        <p
-          className="text-base leading-relaxed mb-12"
-          style={{ color: "#94A3B8" }}
+    <section id="contact" style={{ background: "#eeeeee" }}>
+      <div style={{ maxWidth: 680, margin: "0 auto", padding: "80px 24px 0" }}>
+        <h2
+          style={{
+            fontSize: "clamp(2rem, 5vw, 3rem)",
+            fontWeight: 900,
+            lineHeight: 1.1,
+            marginBottom: 16,
+            color: "#111",
+          }}
         >
-          I'm open to new opportunities, projects, and exciting collaborations.
-          Feel free to reach out via phone or connect with me on social media!
+          <span style={{ color: "#aaa" }}>Say Hi!</span> and tell me about
+          <br />
+          <span
+            style={{ display: "inline-flex", alignItems: "center", gap: 8 }}
+          >
+            <span
+              style={{
+                display: "inline-block",
+                width: 60,
+                height: 2,
+                background: "#111",
+                verticalAlign: "middle",
+              }}
+            />
+            your idea
+          </span>
+        </h2>
+        <p style={{ color: "#888", marginBottom: 40, fontSize: 15 }}>
+          Have a nice works? reach out and let&#39;s chat.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-4">
-          <a
-            href="tel:7816061094"
-            data-ocid="contact.phone_button"
-            className="group inline-flex items-center gap-3 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105"
-            style={{
-              background: "#111827",
-              border: "1px solid rgba(14,165,233,0.3)",
-              color: "#F8FAFC",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                "#0ea5e9";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 20px rgba(14,165,233,0.3)";
-              (e.currentTarget as HTMLAnchorElement).style.background =
-                "rgba(14,165,233,0.1)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                "rgba(14,165,233,0.3)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-              (e.currentTarget as HTMLAnchorElement).style.background =
-                "#111827";
-            }}
+        {submitted ? (
+          <div
+            style={{ padding: "40px 0", textAlign: "center", color: "#111" }}
           >
-            <Phone size={18} style={{ color: "#0ea5e9" }} />
-            7816061094
-          </a>
+            <p style={{ fontSize: 20, fontWeight: 700 }}>
+              Thanks! I&#39;ll get back to you within 24 hours.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} data-ocid="contact.modal">
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 16,
+                marginBottom: 16,
+              }}
+            >
+              <div>
+                <label
+                  htmlFor="contact-name"
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: "#333",
+                    display: "block",
+                    marginBottom: 6,
+                  }}
+                >
+                  Name.<span style={{ color: "#e00" }}>*</span>
+                </label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  required
+                  placeholder="Hello.."
+                  data-ocid="contact.input"
+                  style={INPUT_STYLE}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="contact-email"
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: "#333",
+                    display: "block",
+                    marginBottom: 6,
+                  }}
+                >
+                  Email.<span style={{ color: "#e00" }}>*</span>
+                </label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="Where can I reply"
+                  data-ocid="contact.input"
+                  style={INPUT_STYLE}
+                />
+              </div>
+            </div>
+            <div style={{ marginBottom: 20 }}>
+              <label
+                htmlFor="contact-company"
+                style={{
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: "#333",
+                  display: "block",
+                  marginBottom: 6,
+                }}
+              >
+                Company name
+              </label>
+              <input
+                id="contact-company"
+                name="company"
+                placeholder="Your company or website?"
+                data-ocid="contact.input"
+                style={INPUT_STYLE}
+              />
+            </div>
+            <div style={{ marginBottom: 20 }}>
+              <label
+                htmlFor="contact-message"
+                style={{
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: "#333",
+                  display: "block",
+                  marginBottom: 6,
+                }}
+              >
+                Message.<span style={{ color: "#e00" }}>*</span>
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                required
+                placeholder="Tell me about your idea..."
+                data-ocid="contact.textarea"
+                rows={4}
+                style={{
+                  ...INPUT_STYLE,
+                  resize: "vertical",
+                  fontFamily: "inherit",
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: 28 }}>
+              <label
+                htmlFor="contact-services"
+                style={{
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: "#333",
+                  display: "block",
+                  marginBottom: 10,
+                }}
+              >
+                What&#39;s in your mind?<span style={{ color: "#e00" }}>*</span>
+              </label>
+              <input
+                id="contact-services"
+                type="hidden"
+                name="services"
+                value={selected.join(", ")}
+              />
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {tags.map((tag) => (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() => toggleTag(tag)}
+                    data-ocid="contact.toggle"
+                    style={{
+                      padding: "6px 16px",
+                      borderRadius: 999,
+                      border: "1.5px solid #ccc",
+                      background: selected.includes(tag)
+                        ? "#111"
+                        : "transparent",
+                      color: selected.includes(tag) ? "#fff" : "#333",
+                      fontSize: 13,
+                      fontWeight: 500,
+                      cursor: "pointer",
+                      transition: "all 0.15s",
+                    }}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                gap: 12,
+                marginBottom: 8,
+              }}
+            >
+              <p style={{ fontSize: 12, color: "#999" }}>
+                I&#39;ll must get back to you within 24 hours
+              </p>
+              <button
+                type="submit"
+                data-ocid="contact.submit_button"
+                style={{
+                  padding: "10px 28px",
+                  borderRadius: 999,
+                  background: "#111",
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontSize: 14,
+                  border: "none",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                }}
+              >
+                Send Me <span style={{ fontSize: 16 }}>⚡</span>
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
 
+      {/* Footer inside contact section */}
+      <div
+        style={{
+          borderTop: "1px solid #ddd",
+          marginTop: 60,
+          padding: "20px 24px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: 12,
+        }}
+      >
+        <div style={{ display: "flex", gap: 24, fontSize: 13, color: "#555" }}>
+          <a
+            href="https://dribbble.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ocid="contact.link"
+            style={{ color: "#555", textDecoration: "none" }}
+          >
+            Dribbble
+          </a>
           <a
             href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
-            data-ocid="contact.linkedin_button"
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105"
-            style={{
-              background: "#111827",
-              border: "1px solid rgba(99,102,241,0.3)",
-              color: "#F8FAFC",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                "#6366f1";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 20px rgba(99,102,241,0.3)";
-              (e.currentTarget as HTMLAnchorElement).style.background =
-                "rgba(99,102,241,0.1)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                "rgba(99,102,241,0.3)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-              (e.currentTarget as HTMLAnchorElement).style.background =
-                "#111827";
-            }}
+            data-ocid="contact.link"
+            style={{ color: "#555", textDecoration: "none" }}
           >
-            <Linkedin size={18} style={{ color: "#6366f1" }} />
             LinkedIn
           </a>
-
           <a
-            href={GITHUB_URL}
+            href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            data-ocid="contact.github_button"
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105"
-            style={{
-              background: "#111827",
-              border: "1px solid rgba(56,189,248,0.3)",
-              color: "#F8FAFC",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                "#38BDF8";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 20px rgba(56,189,248,0.3)";
-              (e.currentTarget as HTMLAnchorElement).style.background =
-                "rgba(56,189,248,0.1)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                "rgba(56,189,248,0.3)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-              (e.currentTarget as HTMLAnchorElement).style.background =
-                "#111827";
-            }}
+            data-ocid="contact.link"
+            style={{ color: "#555", textDecoration: "none" }}
           >
-            <Github size={18} style={{ color: "#38BDF8" }} />
-            GitHub
+            Instagram
+          </a>
+          <a
+            href="https://behance.net"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ocid="contact.link"
+            style={{ color: "#555", textDecoration: "none" }}
+          >
+            Behance
           </a>
         </div>
+        <p style={{ fontSize: 12, color: "#999" }}>Personal Portfolio©2024</p>
       </div>
     </section>
   );
