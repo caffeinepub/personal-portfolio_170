@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+    /* Dark navy portfolio theme */
+    --background: 0.176 0.028 255;
+    --foreground: 0.984 0.004 247;
+    --card: 0.213 0.015 255;
+    --card-foreground: 0.984 0.004 247;
+    --popover: 0.213 0.015 255;
+    --popover-foreground: 0.984 0.004 247;
+    --primary: 0.675 0.167 213;
+    --primary-foreground: 0.176 0.028 255;
+    --secondary: 0.558 0.218 272;
+    --secondary-foreground: 0.984 0.004 247;
+    --muted: 0.278 0.015 255;
+    --muted-foreground: 0.672 0.038 246;
+    --accent: 0.558 0.218 272;
+    --accent-foreground: 0.984 0.004 247;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.278 0.015 255;
+    --input: 0.278 0.015 255;
+    --ring: 0.675 0.167 213;
+    --chart-1: 0.675 0.167 213;
+    --chart-2: 0.558 0.218 272;
+    --chart-3: 0.759 0.154 213;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.213 0.015 255;
+    --sidebar-foreground: 0.984 0.004 247;
+    --sidebar-primary: 0.675 0.167 213;
+    --sidebar-primary-foreground: 0.176 0.028 255;
+    --sidebar-accent: 0.278 0.015 255;
+    --sidebar-accent-foreground: 0.984 0.004 247;
+    --sidebar-border: 0.278 0.015 255;
+    --sidebar-ring: 0.675 0.167 213;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Poppins", sans-serif;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+  66% {
+    transform: translateY(-6px) rotate(-2deg);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up-delay {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+
+.animate-fade-in-up-delay2 {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+.animate-fade-in-up-delay3 {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float 8s ease-in-out 1s infinite;
+}
+
+.animate-float-delay2 {
+  animation: float 7s ease-in-out 2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in-up-delay,
+  .animate-fade-in-up-delay2,
+  .animate-fade-in-up-delay3,
+  .animate-float,
+  .animate-float-delay,
+  .animate-float-delay2 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
